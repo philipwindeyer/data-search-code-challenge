@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup' unless defined?(Bundler)
+require 'data_search'
+
+require 'irb'
+IRB.start(__FILE__)
