@@ -3,7 +3,6 @@
 
 require 'optparse'
 require 'readline'
-require 'data_search/json_file_parser'
 require 'data_search/version'
 
 module DataSearch

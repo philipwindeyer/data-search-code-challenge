@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'data_search/json_file_parser'
+
 module DataSearch
   RSpec.describe JsonFileParser do
     describe '#get_object_from_file' do
