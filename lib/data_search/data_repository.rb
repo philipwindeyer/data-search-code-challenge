@@ -13,7 +13,7 @@ module DataSearch
     attr_reader :file_paths
 
     def initialize(file_paths = [])
-      file_paths = [file_paths] unless file_paths.respond_to?(:each)
+      file_paths = [file_paths] unless file_paths.is_a?(Array) # TODO use respond_to with an array specific method (or just don't accept non-arrays)
       @file_paths = file_paths.any? ? file_paths : DEFAULTS
     end
 
