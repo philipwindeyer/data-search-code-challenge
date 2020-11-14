@@ -13,13 +13,9 @@ module DataSearch
     # maybe gradually build up an array, checking if arg already exists before adding
 
     def searchable
-      if data.is_a?(Array)
-        data.map do |object|
-          get_keys(object)
-        end.flatten.uniq
-      else
-        get_keys(data).flatten.uniq
-      end
+      data.map do |object|
+        get_keys(object)
+      end.flatten.uniq
     end
 
     private

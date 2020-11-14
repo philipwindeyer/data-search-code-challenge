@@ -4,12 +4,12 @@ require 'json'
 
 module DataSearch
   class JsonFileParser
-    def self.get_object_from_file(file_path)
-      new.get_object_from_file(file_path)
+    def self.read_data_from_file(file_path)
+      new.read_data_from_file(file_path)
     end
 
-    def get_object_from_file(file_path)
-      raise ArgumentError, 'argument invalid' if file_path.nil?
+    def read_data_from_file(file_path)
+      raise ArgumentError, 'invalid argument' if file_path.nil?
 
       file_string = read_file(file_path)
       parse(file_string)

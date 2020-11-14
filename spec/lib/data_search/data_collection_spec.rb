@@ -6,7 +6,7 @@ module DataSearch
   RSpec.describe DataCollection do
     describe '#searchable' do
       describe 'with a single hash' do
-        subject { DataCollection.new('Stickers', { name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App' }).searchable }
+        subject { DataCollection.new('Stickers', [{ name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App' }]).searchable }
 
         it 'returns an array of keys in single hash' do
           expect(subject).to eq([:name, :iconDescription, :from])
@@ -14,7 +14,7 @@ module DataSearch
       end
 
       describe 'with a single hash with a key containing an array' do
-        subject { DataCollection.new('Stickers', { name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App', colors: ['light-blue', 'black'] }).searchable }
+        subject { DataCollection.new('Stickers', [{ name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App', colors: ['light-blue', 'black'] }]).searchable }
 
         it 'returns an array of keys in single hash' do
           expect(subject).to eq([:name, :iconDescription, :from, :colors])
@@ -22,7 +22,7 @@ module DataSearch
       end
 
       describe 'with a hash with nested hash fields' do
-        subject { DataCollection.new('Stickers', { name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App', dimensions: { x: 20, y: 8 } }).searchable }
+        subject { DataCollection.new('Stickers', [{ name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App', dimensions: { x: 20, y: 8 } }]).searchable }
 
         it 'returns an array of keys in single hash' do
           expect(subject).to eq([:name, :iconDescription, :from, :dimensions, :x, :y])

@@ -13,7 +13,8 @@ module DataSearch
     attr_reader :file_paths
 
     def initialize(file_paths = [])
-      file_paths = [file_paths] unless file_paths.is_a?(Array) # TODO use respond_to with an array specific method (or just don't accept non-arrays)
+      raise ArgumentError, 'invalid argument' unless file_paths.is_a?(Array)
+
       @file_paths = file_paths.any? ? file_paths : DEFAULTS
     end
 
@@ -33,7 +34,8 @@ module DataSearch
     end
 
     def get_data(file_path)
-      JsonFileParser.get_object_from_file(file_path)
+      data = JsonFileParser.read_data_from_file(file_path)
+      data.is_a?(Array) ? data : [data]
     end
   end
 end

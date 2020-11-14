@@ -20,16 +20,8 @@ module DataSearch
       describe 'when file_paths arg is not an array' do
         subject { described_class.new('ting.json') }
 
-        it 'wraps arg in array' do
-          expect(subject.file_paths).to eq(['ting.json'])
-        end
-      end
-
-      describe 'when file_paths arg is nil' do
-        subject { described_class.new(nil) }
-
-        it 'uses the defaults' do
-          expect(subject.file_paths).to eq(defaults)
+        it 'raises an ArgumentError' do
+          expect { subject }.to raise_error(ArgumentError, 'invalid argument')
         end
       end
 
@@ -44,11 +36,12 @@ module DataSearch
 
     describe '#data' do
       describe 'with an invalid file' do
-        let(:filename)  { 'path/to/broken-message.json' }
+        let(:filename) { 'path/to/broken-message.json' }
+
         subject { described_class.new([filename]).data }
 
         before do
-          allow(JsonFileParser).to receive(:get_object_from_file).and_raise(JSON::ParserError)
+          allow(JsonFileParser).to receive(:read_data_from_file).and_raise(JSON::ParserError)
         end
 
         it 'returns array with single object' do
@@ -58,25 +51,39 @@ module DataSearch
 
       describe 'with a single, valid file' do
         let(:filename)  { 'path/to/messages.json' }
-        let(:test_json) { { id: 1, delivered: true, message: 'sup, fam' } }
+        let(:test_json) { [{ id: 1, delivered: true, message: 'sup, fam' }] }
 
         subject { described_class.new([filename]).data }
 
         before do
-          allow(JsonFileParser).to receive(:get_object_from_file).and_return(test_json)
+          allow(JsonFileParser).to receive(:read_data_from_file).and_return(test_json)
         end
 
-        it 'returns array with single object' do
+        it 'returns array with single data collection' do
           expect(subject.length).to eq(1)
         end
 
-        describe 'single object in returned array' do
-          it 'sets the name to human readable version of file name' do
-            expect(subject[0].name).to eq('Messages')
+        describe 'collection in returned array' do
+          describe 'when data in file is an array' do
+            it 'sets the name to human readable version of file name' do
+              expect(subject[0].name).to eq('Messages')
+            end
+
+            it 'assigns parsed file contents to "data"' do
+              expect(subject[0].data).to eq(test_json)
+            end
           end
 
-          it 'assigns parsed file contents to "data"' do
-            expect(subject[0].data).to eq(test_json)
+          describe 'when data in file is a single object' do
+            let(:test_json) { { id: 2, delivered: true, message: 'kthxbye' } }
+
+            it 'sets the name to human readable version of file name' do
+              expect(subject[0].name).to eq('Messages')
+            end
+
+            it 'wraps single object in array and assigns to data' do
+              expect(subject[0].data).to eq([test_json])
+            end
           end
         end
       end
@@ -106,8 +113,8 @@ module DataSearch
         subject { described_class.new(filenames).data }
 
         before do
-          allow(JsonFileParser).to receive(:get_object_from_file).with(filenames[0]).and_return(fav_shows)
-          allow(JsonFileParser).to receive(:get_object_from_file).with(filenames[1]).and_return(system_settings)
+          allow(JsonFileParser).to receive(:read_data_from_file).with(filenames[0]).and_return(fav_shows)
+          allow(JsonFileParser).to receive(:read_data_from_file).with(filenames[1]).and_return(system_settings)
         end
 
         it 'returns array with single object' do
