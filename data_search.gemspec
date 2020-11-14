@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['philipwindeyer@gmail.com']
 
   spec.summary       = '"Data Search" code challenge for Zendesk'
-  spec.description   = 'A small command-line app providing the ability to search for and present data provided via JSON files'
+  spec.description   = 'A command-line app providing the ability to search for and present data provided via JSON files'
   spec.homepage      = 'https://github.com/philipwindeyer/data-search-code-challenge'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.4.0')
