@@ -2,7 +2,9 @@
 
 A small command-line app providing the ability to search for, and present, data provided via JSON files. Written in Ruby.
 
-TODO add more info
+The aim of this code base is to satisfy the requirements of a code challenge.
+
+The app assumes that there are 3 JSON files in the root of the project (provided by assessor), and that the app is run from the project root dir, using the `data_search` script in `bin/` (i.e. `bin/data_search`).
 
 ## Prerequisites
 
@@ -22,22 +24,36 @@ TODO add more info
 
 ### From source
 
-- Run `bin/data_search`
-- TODO add info on args, etc
+Once set up, the app can be run from source.
 
-### As an executable gem
+From the root of the project directory, run:
 
-- Build gem: `gem build data_search.gemspec`
-- Install gem: `gem install ./data_search*.gem`
-- Run (TODO add instructions on running locally installed gem)
+- `bin/data_search`
+
+Instructions are displayed during the use of the application.
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Setting up
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+After checking out the repo;
 
-Lint/format your code using RuboCop: `bundle exec rubocop` (`bundle exec rubocop -a` to autocorrect)
+- Run `bin/setup`, to install dependencies (i.e. setup does a `bundle install`, etc)
+
+### Practises
+
+The app structure conforms to the standard structure (scaffold) of any ordinary Ruby Gem.
+
+For each lib file, there is a corresponding Rspec suite in the `spec/` directory.
+
+Testing should be thorough, and styling/linting used to keep the codebase neat.
+
+- `bundle exec rubocop` to run rubocop over the entire codebase (suffix `-a` or `-A` to autocorrect)
+- `bundle exec rspec` to run the spec suite
+
+You can also experiment via IRB (with lib resources loaded) using;
+
+- `bin/console`
 
 ## License
 
