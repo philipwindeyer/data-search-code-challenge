@@ -9,24 +9,22 @@ module DataSearch
       @data = data
     end
 
-    # TODO make this not shit... it's awfully implemented atm
-    # maybe gradually build up an array, checking if arg already exists before adding
-
     def searchable
-      data.map do |object|
-        get_keys(object)
-      end.flatten.uniq
+      @searchable ||= begin
+        [].tap do |fields|
+          data.map do |object|
+            get_keys(object, fields)
+          end
+        end
+      end
     end
 
     private
 
-    def get_keys(object)
+    def get_keys(object, fields)
       object.map do |key, value|
-        if value.respond_to?(:keys)
-          [key] | get_keys(value)
-        else
-          key
-        end
+        fields << key unless fields.include?(key)
+        get_keys(value, fields) if value.respond_to?(:keys)
       end
     end
   end

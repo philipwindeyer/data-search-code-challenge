@@ -2,7 +2,6 @@
 
 require 'data_search/json_file_parser'
 require 'data_search/data_repository'
-require 'data_search/data_collection'
 
 module DataSearch
   RSpec.describe DataRepository do

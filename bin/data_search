@@ -4,4 +4,4 @@
 require 'bundler/setup' unless defined?(Bundler)
 require 'data_search'
 
-DataSearch.cmd
+DataSearch.start

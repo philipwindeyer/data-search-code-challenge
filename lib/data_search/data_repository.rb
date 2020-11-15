@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/string/inflections'
+require 'data_search/json_file_parser'
+require 'data_search/data_collection'
 
 module DataSearch
   class DataRepository
