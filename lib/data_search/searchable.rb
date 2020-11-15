@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
-# require 'active_support/core_ext/string/inflections'
-
 module DataSearch
   module Searchable
-    def valid_search_field?(field)
-      searchable.include?(field.to_sym)
-    end
-
     def search(field, term)
       data.select do |object|
         object_value = object[field.to_sym]

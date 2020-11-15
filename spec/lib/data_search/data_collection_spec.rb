@@ -55,32 +55,6 @@ module DataSearch
       end
     end
 
-    describe '#valid_search_field?' do
-      subject do
-        DataCollection.new(
-          'Stickers', [
-            { name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App' }
-          ]
-        ).valid_search_field?(field)
-      end
-
-      describe 'when field is searchable' do
-        let(:field) { 'iconDescription' }
-
-        it 'is valid' do
-          expect(subject).to eq(true)
-        end
-      end
-
-      describe 'when field is not searchable' do
-        let(:field) { 'notAValidFieldToSearchWith' }
-
-        it 'is not valid' do
-          expect(subject).to eq(false)
-        end
-      end
-    end
-
     describe '#search' do
       let(:stickers) do
         [
