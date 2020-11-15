@@ -92,13 +92,17 @@ module DataSearch
           let(:term)  { 'CRA' }
 
           it 'returns the corresponding object' do
-            expect(subject).to eq([{
-                                    name: 'CRA',
-                                    iconDescription: 'Atom in a box',
-                                    from: 'Create React App',
-                                    dimensions: { x: 20, y: 8 },
-                                    idealSurface: "Back of laptop"
-                                  }])
+            expect(subject).to eq(
+              [
+                {
+                  name: 'CRA',
+                  iconDescription: 'Atom in a box',
+                  from: 'Create React App',
+                  dimensions: { x: 20, y: 8 },
+                  idealSurface: "Back of laptop"
+                }
+              ]
+            )
           end
         end
 
@@ -107,13 +111,17 @@ module DataSearch
           let(:term)  { 'cra' }
 
           it 'returns the corresponding object' do
-            expect(subject).to eq([{
-                                    name: 'CRA',
-                                    iconDescription: 'Atom in a box',
-                                    from: 'Create React App',
-                                    dimensions: { x: 20, y: 8 },
-                                    idealSurface: "Back of laptop"
-                                  }])
+            expect(subject).to eq(
+              [
+                {
+                  name: 'CRA',
+                  iconDescription: 'Atom in a box',
+                  from: 'Create React App',
+                  dimensions: { x: 20, y: 8 },
+                  idealSurface: "Back of laptop"
+                }
+              ]
+            )
           end
         end
 
@@ -122,23 +130,25 @@ module DataSearch
           let(:term)  { 'Back of laptop' }
 
           it 'returns the corresponding objects' do
-            expect(subject).to eq([
-                                    {
-                                      name: 'CRA',
-                                      iconDescription: 'Atom in a box',
-                                      from: 'Create React App',
-                                      dimensions: { x: 20, y: 8 },
-                                      idealSurface: "Back of laptop"
-                                    },
-                                    {
-                                      name: 'Octocat',
-                                      iconDescription: 'Shady lookin octocat with a hat on and a cigar',
-                                      from: 'Github',
-                                      colors: ['grey'],
-                                      dimensions: { x: 20, y: 8 },
-                                      idealSurface: "Back of laptop"
-                                    }
-                                  ])
+            expect(subject).to eq(
+              [
+                {
+                  name: 'CRA',
+                  iconDescription: 'Atom in a box',
+                  from: 'Create React App',
+                  dimensions: { x: 20, y: 8 },
+                  idealSurface: "Back of laptop"
+                },
+                {
+                  name: 'Octocat',
+                  iconDescription: 'Shady lookin octocat with a hat on and a cigar',
+                  from: 'Github',
+                  colors: ['grey'],
+                  dimensions: { x: 20, y: 8 },
+                  idealSurface: "Back of laptop"
+                }
+              ]
+            )
           end
         end
 
@@ -147,67 +157,23 @@ module DataSearch
           let(:term)  { 'blue' }
 
           it 'returns the corresponding object' do
-            expect(subject).to eq([{
-                                    name: 'Apple Logo',
-                                    iconDescription: 'Old school rainbow Apple logo',
-                                    from: 'Apple',
-                                    colors: ['green', 'yellow', 'orange', 'pink', 'purple', 'blue'],
-                                    dimensions: { x: 15, y: 15 },
-                                    idealSurface: "Side of tower"
-                                  }])
+            expect(subject).to eq(
+              [
+                {
+                  name: 'Apple Logo',
+                  iconDescription: 'Old school rainbow Apple logo',
+                  from: 'Apple',
+                  colors: ['green', 'yellow', 'orange', 'pink', 'purple', 'blue'],
+                  dimensions: { x: 15, y: 15 },
+                  idealSurface: "Side of tower"
+                }
+              ]
+            )
           end
         end
 
-        xdescribe 'and the search term corresponds a top-level key with a valid nested value' do
-          let(:field) { 'dimensions' }
-          let(:term)  { '20' }
-
-          it 'returns the corresponding objects' do
-            expect(subject).to eq([
-                                    {
-                                      name: 'CRA',
-                                      iconDescription: 'Atom in a box',
-                                      from: 'Create React App',
-                                      dimensions: { x: 20, y: 8 },
-                                      idealSurface: "Back of laptop"
-                                    },
-                                    {
-                                      name: 'Octocat',
-                                      iconDescription: 'Shady lookin octocat with a hat on and a cigar',
-                                      from: 'Github',
-                                      colors: ['grey'],
-                                      dimensions: { x: 20, y: 8 },
-                                      idealSurface: "Back of laptop"
-                                    }
-                                  ])
-          end
-        end
-
-        xdescribe 'and the search term corresponds a nested term and value' do
-          let(:field) { 'y' }
-          let(:term)  { '8' }
-
-          it 'returns the corresponding objects' do
-            expect(subject).to eq([
-                                    {
-                                      name: 'CRA',
-                                      iconDescription: 'Atom in a box',
-                                      from: 'Create React App',
-                                      dimensions: { x: 20, y: 8 },
-                                      idealSurface: "Back of laptop"
-                                    },
-                                    {
-                                      name: 'Octocat',
-                                      iconDescription: 'Shady lookin octocat with a hat on and a cigar',
-                                      from: 'Github',
-                                      colors: ['grey'],
-                                      dimensions: { x: 20, y: 8 },
-                                      idealSurface: "Back of laptop"
-                                    }
-                                  ])
-          end
-        end
-
+        # TODO describe 'and the search term corresponds a top-level key with a valid nested value'
+        # TODO describe 'and the search term corresponds a nested term and value'
         # TODO describe 'and the objects have inconsistent definitions'
       end
 
