@@ -65,9 +65,9 @@ Components of the app are all unit tested with RSpec test suites, located in `sp
 
 You can also experiment via IRB (with lib resources loaded) if needed.
 
-## To-do
+## Issues and To-dos
 
-- [ ] Implement integreation specs to test console input (troublesome to unit test IO with tty-prompt)
+See [Issues](https://github.com/philipwindeyer/data-search-code-challenge/issues) for outstanding work, and any issues/bugs that require addressing
 
 ## License
 
