@@ -65,6 +65,10 @@ Components of the app are all unit tested with RSpec test suites, located in `sp
 
 You can also experiment via IRB (with lib resources loaded) if needed.
 
+## To-do
+
+- [ ] Implement integreation specs to test console input (troublesome to unit test IO with tty-prompt)
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
