@@ -7,8 +7,6 @@ require 'data_search/command_line'
 module DataSearch
   def self.start
     data = DataSearch::DataRepository.new.data
-
-    command_line = CommandLine.new(data: data)
-    command_line.run
+    command_line = CommandLine.new(data: data).run
   end
 end
