@@ -8,8 +8,8 @@ module DataSearch
       describe 'with a single hash' do
         subject { DataCollection.new('Stickers', [{ name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App' }]).searchable }
 
-        it 'returns an array of keys in single hash' do
-          expect(subject).to eq([:name, :iconDescription, :from])
+        it 'returns an array of string keys in single hash' do
+          expect(subject).to eq(['name', 'iconDescription', 'from'])
         end
       end
 
@@ -17,15 +17,32 @@ module DataSearch
         subject { DataCollection.new('Stickers', [{ name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App', colors: ['light-blue', 'black'] }]).searchable }
 
         it 'returns an array of keys in single hash' do
-          expect(subject).to eq([:name, :iconDescription, :from, :colors])
+          expect(subject).to eq(['name', 'iconDescription', 'from', 'colors'])
         end
       end
 
       describe 'with a hash with nested hash fields' do
-        subject { DataCollection.new('Stickers', [{ name: 'CRA', iconDescription: 'Atom in a box', from: 'Create React App', dimensions: { x: 20, y: 8 } }]).searchable }
+        subject do
+          DataCollection.new(
+            'Stickers', [
+              {
+                name: 'CRA',
+                iconDescription: 'Atom in a box',
+                from: 'Create React App',
+                dimensions: { x: 20, y: 8 },
+                meta: {
+                  from: {
+                    conference: 'JSConf.Asia',
+                    location: 'Singapore'
+                  }
+                }
+              }
+            ]
+          ).searchable
+        end
 
         it 'returns an array of keys in single hash' do
-          expect(subject).to eq([:name, :iconDescription, :from, :dimensions, :x, :y])
+          expect(subject).to eq(['name', 'iconDescription', 'from', 'dimensions.x', 'dimensions.y', "meta.from.conference", "meta.from.location"])
         end
       end
 
@@ -50,7 +67,7 @@ module DataSearch
         subject { DataCollection.new('Stickers', stickers).searchable }
 
         it 'returns an array of keys from each object in array' do
-          expect(subject).to eq([:name, :iconDescription, :from, :dimensions, :x, :y, :colors])
+          expect(subject).to eq(['name', 'iconDescription', 'from', 'dimensions.x', 'dimensions.y', 'colors'])
         end
       end
     end

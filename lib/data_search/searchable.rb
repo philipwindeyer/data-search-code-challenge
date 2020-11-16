@@ -26,10 +26,15 @@ module DataSearch
 
     private
 
-    def get_keys(object, fields)
+    def get_keys(object, fields, parent = nil)
       object.map do |key, value|
-        fields << key unless fields.include?(key)
-        get_keys(value, fields) if value.respond_to?(:keys)
+        searchable_key = "#{parent.present? ? "#{parent}." : ''}#{key}"
+
+        if value.respond_to?(:keys)
+          get_keys(value, fields, searchable_key)
+        else
+          fields << searchable_key unless fields.include?(searchable_key)
+        end
       end
     end
   end
