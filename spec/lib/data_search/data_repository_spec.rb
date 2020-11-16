@@ -62,6 +62,10 @@ module DataSearch
           expect(subject.length).to eq(1)
         end
 
+        it 'extends data with DeepLocate' do
+          expect(subject[0]).to respond_to(:deep_locate)
+        end
+
         describe 'collection in returned array' do
           describe 'when data in file is an array' do
             it 'sets the name to human readable version of file name' do
@@ -118,6 +122,11 @@ module DataSearch
 
         it 'returns array with single object' do
           expect(subject.length).to eq(2)
+        end
+
+        it 'extends data with DeepLocate' do
+          expect(subject[0]).to respond_to(:deep_locate)
+          expect(subject[1]).to respond_to(:deep_locate)
         end
 
         describe 'first object' do

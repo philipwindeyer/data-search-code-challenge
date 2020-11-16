@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/string/inflections'
+require 'hashie/extensions/deep_locate'
 require 'data_search/json_file_parser'
 require 'data_search/data_collection'
 
@@ -21,11 +22,13 @@ module DataSearch
     end
 
     def data
-      file_paths.map do |file_path|
-        DataCollection.new(
-          get_name(file_path),
-          get_data(file_path)
-        )
+      @data ||= begin
+        file_paths.map do |file_path|
+          DataCollection.new(
+            get_name(file_path),
+            get_data(file_path)
+          ).extend(Hashie::Extensions::DeepLocate)
+        end
       end
     end
 
