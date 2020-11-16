@@ -15,6 +15,7 @@ GEM
     ast (2.4.1)
     concurrent-ruby (1.1.7)
     diff-lcs (1.4.4)
+    hashie (4.1.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     minitest (5.14.2)
@@ -75,6 +76,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport (~> 6.0, >= 6.0.3.4)
   data_search!
+  hashie (~> 4.1)
   rake (~> 12.0)
   rspec (~> 3.0)
   rubocop (~> 1.3)

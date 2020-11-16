@@ -4,12 +4,10 @@ module DataSearch
   module Searchable
     def search(field, term)
       data.select do |object|
-        object_value = object[field.to_sym]
-
-        if object_value.respond_to?(:each)
-          object_value.map { |value| value.to_s.casecmp?(term) }.any?
+        if nested_search?(field)
+          matching_nested_value?(field, term, object)
         else
-          object_value.to_s.casecmp?(term)
+          matches?(field, term, object)
         end
       end
     end
@@ -25,6 +23,30 @@ module DataSearch
     end
 
     private
+
+    def nested_search?(field)
+      field.include?('.')
+    end
+
+    def matching_nested_value?(field, term, object)
+      nested_field = field.split('.').last.to_sym
+
+      deeply_nested = object.deep_locate ->(key, value, _object) do
+        key == nested_field && value.to_s.casecmp?(term)
+      end
+
+      deeply_nested.any?
+    end
+
+    def matches?(field, term, object)
+      object_value = object[field.to_sym]
+
+      if object_value.respond_to?(:each)
+        object_value.map { |value| value.to_s.casecmp?(term) }.any?
+      else
+        object_value.to_s.casecmp?(term)
+      end
+    end
 
     def get_keys(object, fields, parent = nil)
       object.map do |key, value|

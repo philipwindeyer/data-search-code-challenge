@@ -80,7 +80,13 @@ module DataSearch
             iconDescription: 'Atom in a box',
             from: 'Create React App',
             dimensions: { x: 20, y: 8 },
-            idealSurface: "Back of laptop"
+            idealSurface: "Back of laptop",
+            meta: {
+              from: {
+                conference: 'JSConf.Asia',
+                location: 'Singapore'
+              }
+            }
           },
           {
             name: 'Octocat',
@@ -88,7 +94,8 @@ module DataSearch
             from: 'Github',
             colors: ['grey'],
             dimensions: { x: 20, y: 8 },
-            idealSurface: "Back of laptop"
+            idealSurface: "Back of laptop",
+            rogueProp: "random bit that is not a part of any other object"
           },
           {
             name: 'Apple Logo',
@@ -97,8 +104,8 @@ module DataSearch
             colors: ['green', 'yellow', 'orange', 'pink', 'purple', 'blue'],
             dimensions: { x: 15, y: 15 },
             idealSurface: "Side of tower"
-          },
-        ]
+          }
+        ].map { |obj| obj.extend(Hashie::Extensions::DeepLocate) }
       end
 
       subject { DataCollection.new('Stickers', stickers).search(field, term) }
@@ -116,7 +123,13 @@ module DataSearch
                   iconDescription: 'Atom in a box',
                   from: 'Create React App',
                   dimensions: { x: 20, y: 8 },
-                  idealSurface: "Back of laptop"
+                  idealSurface: "Back of laptop",
+                  meta: {
+                    from: {
+                      conference: 'JSConf.Asia',
+                      location: 'Singapore'
+                    }
+                  }
                 }
               ]
             )
@@ -135,7 +148,13 @@ module DataSearch
                   iconDescription: 'Atom in a box',
                   from: 'Create React App',
                   dimensions: { x: 20, y: 8 },
-                  idealSurface: "Back of laptop"
+                  idealSurface: "Back of laptop",
+                  meta: {
+                    from: {
+                      conference: 'JSConf.Asia',
+                      location: 'Singapore'
+                    }
+                  }
                 }
               ]
             )
@@ -154,7 +173,13 @@ module DataSearch
                   iconDescription: 'Atom in a box',
                   from: 'Create React App',
                   dimensions: { x: 20, y: 8 },
-                  idealSurface: "Back of laptop"
+                  idealSurface: "Back of laptop",
+                  meta: {
+                    from: {
+                      conference: 'JSConf.Asia',
+                      location: 'Singapore'
+                    }
+                  }
                 },
                 {
                   name: 'Octocat',
@@ -162,7 +187,8 @@ module DataSearch
                   from: 'Github',
                   colors: ['grey'],
                   dimensions: { x: 20, y: 8 },
-                  idealSurface: "Back of laptop"
+                  idealSurface: "Back of laptop",
+                  rogueProp: "random bit that is not a part of any other object"
                 }
               ]
             )
@@ -189,9 +215,51 @@ module DataSearch
           end
         end
 
-        # TODO describe 'and the search term corresponds a top-level key with a valid nested value'
-        # TODO describe 'and the search term corresponds a nested term and value'
-        # TODO describe 'and the objects have inconsistent definitions'
+        describe 'and the search term corresponds a nested term and value' do
+          let(:field) { 'meta.from.conference' }
+          let(:term)  { 'jsconf.asia' }
+
+          it 'returns the corresponding object' do
+            expect(subject).to eq(
+              [
+                {
+                  name: 'CRA',
+                  iconDescription: 'Atom in a box',
+                  from: 'Create React App',
+                  dimensions: { x: 20, y: 8 },
+                  idealSurface: "Back of laptop",
+                  meta: {
+                    from: {
+                      conference: 'JSConf.Asia',
+                      location: 'Singapore'
+                    }
+                  }
+                }
+              ]
+            )
+          end
+        end
+
+        describe 'and the objects have inconsistent definitions' do
+          let(:field) { 'rogueProp' }
+          let(:term)  { 'random bit that is not a part of any other object' }
+
+          it 'returns the corresponding object' do
+            expect(subject).to eq(
+              [
+                {
+                  name: 'Octocat',
+                  iconDescription: 'Shady lookin octocat with a hat on and a cigar',
+                  from: 'Github',
+                  colors: ['grey'],
+                  dimensions: { x: 20, y: 8 },
+                  idealSurface: "Back of laptop",
+                  rogueProp: "random bit that is not a part of any other object"
+                }
+              ]
+            )
+          end
+        end
       end
 
       describe 'when there is no match found' do

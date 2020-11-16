@@ -60,15 +60,13 @@ module DataSearch
 
     attr_reader :prompt, :data
 
-    def ask(message = nil)
-      prompt.ask(message) do |raw|
-        raw.modify :strip, :down
-        raw.convert ->(input) { quit_command?(input) ? quit : input }
-      end
-    end
+    delegate :select, to: :prompt
 
-    def select(message, options)
-      prompt.select(message, options)
+    def ask(message = nil)
+      prompt.ask(message) do |io|
+        io.modify :strip, :down
+        io.convert ->(input) { quit_command?(input) ? quit : input }
+      end
     end
 
     def quit_command?(input)
