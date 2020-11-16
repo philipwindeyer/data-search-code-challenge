@@ -1,7 +1,6 @@
 # DataSearch
 
-A small command-line app providing the ability to search for, and present, data provided via JSON files. Written in Ruby.
-
+A small command-line app providing the ability to search for, and present, data provided via JSON files. Written in Ruby.  
 The aim of this code base is to satisfy the requirements of a code challenge.
 
 The app assumes that there are 3 JSON files in the root of the project (provided by assessor), and that the app is run from the project root dir, using the `data_search` script in `bin/` (i.e. `bin/data_search`).
@@ -42,18 +41,29 @@ After checking out the repo;
 
 ### Practises
 
-The app structure conforms to the standard structure (scaffold) of any ordinary Ruby Gem.
+The app structure conforms to the standard structure (scaffold) of any ordinary Ruby Gem.  
+For each lib file, there is a corresponding RSpec suite in the `spec/` directory.
 
-For each lib file, there is a corresponding Rspec suite in the `spec/` directory.
+#### Rubocop (linting/formatting)
 
-Testing should be thorough, and styling/linting used to keep the codebase neat.
+- `bundle exec rubocop` to run rubocop over the entire code base (suffix `-a` or `-A` to autocorrect)
 
-- `bundle exec rubocop` to run rubocop over the entire codebase (suffix `-a` or `-A` to autocorrect)
+Rubocop, along with the [Relaxed Ruby Style](https://relaxed.ruby.style/) config, is used to lint/analyze the code base, and format.
+
+The relaxed style config provides clean "best practise" rules, without the overarching hardcore rule-set of the default rubocop config.  
+It also provides formatting rules to trim any white space, and correct indents where necessary.
+
+#### RSpec (testing)
+
 - `bundle exec rspec` to run the spec suite
 
-You can also experiment via IRB (with lib resources loaded) using;
+Components of the app are all unit tested with RSpec test suites, located in `spec/`.
 
-- `bin/console`
+#### IRB (console)
+
+- `bin/console` to load up IRB with gem files present.
+
+You can also experiment via IRB (with lib resources loaded) if needed.
 
 ## License
 
