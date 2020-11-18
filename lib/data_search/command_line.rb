@@ -23,24 +23,12 @@ module DataSearch
     end
 
     def welcome_prompt
-      puts <<~WELCOME
-
-        Welcome to Zendesk Search
-        Type 'quit' to exit at any time, Press 'Enter' to continue
-      WELCOME
-
+      puts WELCOME
       ask
     end
 
     def print_instructions
-      puts <<-INSTRUCTIONS
-
-        Select search options:
-        * Press 1 to search Zendesk
-        * Press 2 to view a list of searchable fields
-        * Type 'quit' to exit
-
-      INSTRUCTIONS
+      puts INSTRUCTIONS
     end
 
     def main_menu
