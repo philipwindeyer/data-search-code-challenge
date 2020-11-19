@@ -11,4 +11,5 @@ group :test, :development do
   gem 'rake', '~> 12.0'
   gem 'rspec', '~> 3.0'
   gem 'rubocop', '~> 1.3'
+  gem 'rdoc', '~> 6.2', '>= 6.2.1'
 end

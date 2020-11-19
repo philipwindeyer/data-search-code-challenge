@@ -3,7 +3,13 @@
 A small command-line app providing the ability to search for, and present, data provided via JSON files. Written in Ruby.  
 The aim of this code base is to satisfy the requirements of a code challenge.
 
-The app assumes that there are 3 JSON files in the root of the project (provided by assessor), and that the app is run from the project root dir, using the `data_search` script in `bin/` (i.e. `bin/data_search`).
+The code challenge solution in question has also been written in TypeScript [here](https://github.com/philipwindeyer/data-search-code-challenge-ts) (although this versio differs significantly). (TODO: link to TS version once ready)
+
+It is generic in nature, in that any valid JSON file(s) can be used as the data source to search over. If no file args are provided when running the app, default data is used (see the 3 .json files in the root dir).
+
+For a domain-specific version of the app (assuming the searchable domains "Organisation", "User" and "Ticket"), see my [TypeScript version here](https://github.com/philipwindeyer/data-search-code-challenge-ts).
+
+The app is run from the project root dir, using the `data_search` script in `bin/` (i.e. `bin/data_search`).
 
 ## Prerequisites
 
@@ -58,6 +64,10 @@ It also provides formatting rules to trim any white space, and correct indents w
 - `bundle exec rspec` to run the spec suite
 
 Components of the app are all unit tested with RSpec test suites, located in `spec/`.
+
+#### RDoc
+
+TODO Fill this in
 
 #### IRB (console)
 
