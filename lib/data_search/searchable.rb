@@ -41,8 +41,12 @@ module DataSearch
     def matches?(field, term, object)
       object_value = object[field.to_sym]
 
-      if object_value.respond_to?(:each)
+      if object_value.nil?
+        false
+      elsif object_value.respond_to?(:each)
         object_value.map { |value| value.to_s.casecmp?(term) }.any?
+      elsif term.blank?
+        object_value.blank?
       else
         object_value.to_s.casecmp?(term)
       end

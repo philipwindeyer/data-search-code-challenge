@@ -9,9 +9,11 @@ RSpec.describe DataSearch do
   end
 
   describe '#start' do
-    let(:command_line) { instance_double(DataSearch::CommandLine, { run: nil }) }
+    let(:input_arg_parser) { instance_double(DataSearch::InputArgParser, { parse: [] }) }
+    let(:command_line)     { instance_double(DataSearch::CommandLine, { run: nil }) }
 
     before do
+      allow(DataSearch::InputArgParser).to receive(:new).and_return(input_arg_parser)
       allow(DataSearch::CommandLine).to receive(:new).and_return(command_line)
       DataSearch.start
     end

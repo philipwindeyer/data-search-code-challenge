@@ -103,7 +103,8 @@ module DataSearch
             from: 'Apple',
             colors: ['green', 'yellow', 'orange', 'pink', 'purple', 'blue'],
             dimensions: { x: 15, y: 15 },
-            idealSurface: "Side of tower"
+            idealSurface: "Side of tower",
+            porousness: ''
           }
         ].map { |obj| obj.extend(Hashie::Extensions::DeepLocate) }
       end
@@ -161,6 +162,27 @@ module DataSearch
           end
         end
 
+        describe 'and the search term is empty and corresponds to a top-level object' do
+          let(:field) { 'porousness' }
+          let(:term)  { '' }
+
+          it 'returns the corresponding object' do
+            expect(subject).to eq(
+              [
+                {
+                  name: 'Apple Logo',
+                  iconDescription: 'Old school rainbow Apple logo',
+                  from: 'Apple',
+                  colors: ['green', 'yellow', 'orange', 'pink', 'purple', 'blue'],
+                  dimensions: { x: 15, y: 15 },
+                  idealSurface: "Side of tower",
+                  porousness: ''
+                }
+              ]
+            )
+          end
+        end
+
         describe 'and the search term corresponds to multiple objects' do
           let(:field) { 'idealSurface' }
           let(:term)  { 'Back of laptop' }
@@ -208,7 +230,8 @@ module DataSearch
                   from: 'Apple',
                   colors: ['green', 'yellow', 'orange', 'pink', 'purple', 'blue'],
                   dimensions: { x: 15, y: 15 },
-                  idealSurface: "Side of tower"
+                  idealSurface: "Side of tower",
+                  porousness: ''
                 }
               ]
             )
