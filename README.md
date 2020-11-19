@@ -65,7 +65,7 @@ It also provides formatting rules to trim any white space, and correct indents w
 
 Components of the app are all unit tested with RSpec test suites, located in `spec/`.
 
-#### RDoc
+#### RDoc (documentation)
 
 TODO Fill this in
 
