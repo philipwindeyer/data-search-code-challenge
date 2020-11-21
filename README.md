@@ -3,7 +3,7 @@
 A small command-line app providing the ability to search for, and present, data provided via JSON files. Written in Ruby.  
 The aim of this code base is to satisfy the requirements of a code challenge.
 
-The code challenge solution in question has also been written in TypeScript [here](https://github.com/philipwindeyer/data-search-code-challenge-ts) (although this version differs significantly). (TODO: link to TS version once ready)
+The code challenge solution in question has also been written in TypeScript [here](https://github.com/philipwindeyer/data-search-code-challenge-ts) (although this version differs significantly).
 
 It is generic in nature, in that any valid JSON file(s) can be used as the data source to search over. If no file args are provided when running the app, default data is used (see the 3 .json files in the root dir).
 

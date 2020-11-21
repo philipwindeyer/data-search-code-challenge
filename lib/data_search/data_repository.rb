@@ -5,6 +5,8 @@ require 'data_search/json_file_parser'
 require 'data_search/data_collection'
 
 module DataSearch
+
+  # "Repository" that, via JSON files provided, builds @see DataCollection objects per file
   class DataRepository
     DEFAULTS = [
       'organizations.json',
@@ -14,12 +16,18 @@ module DataSearch
 
     attr_reader :file_paths
 
+    # @param file_paths [String[]] file path list. Default == []
+    #
+    # @raise [ArgumentError] if file_paths is not an array
     def initialize(file_paths = [])
       raise ArgumentError, 'invalid argument' unless file_paths.is_a?(Array)
 
       @file_paths = file_paths.any? ? file_paths : DEFAULTS
     end
 
+    # Builds and returns a @see DataCollection object per file provided to @see DataRepository instance
+    #
+    # @return [DataCollection[]] array of @see DataCollection objects corresponding to each data file provided
     def data
       @data ||= begin
         file_paths.map do |file_path|

@@ -5,9 +5,15 @@ require 'active_support/core_ext/array/conversions'
 require 'data_search/command_line_search_methods'
 
 module DataSearch
+
+  # Provides a basic interactive command-line to interact with (i.e. search) data
   class CommandLine
     include CommandLineSearchMethods
 
+    # @param data [DataCollection[]] collections of searchable data
+    #
+    # Instantiates command-line, a @see TTY::Prompt to capture input,
+    #   and traps SIGINT (ctrl+c) signals for a graceful shutdown of the app
     def initialize(data:, prompt: TTY::Prompt.new(interrupt: :signal))
       @prompt = prompt
       @data = data
