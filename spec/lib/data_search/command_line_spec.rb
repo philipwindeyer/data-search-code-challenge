@@ -168,11 +168,20 @@ module DataSearch
 
     describe '#main_menu' do
       before do
+        allow(subject).to receive(:print_instructions)
         allow(prompt).to receive(:ask).and_return(option)
         allow(subject).to receive(:search)
         allow(subject).to receive(:print_searchable_fields)
 
         subject.main_menu
+      end
+
+      describe 'instructions' do
+        let(:option) { 'na' }
+
+        it 'invokes the instructions method' do
+          expect(subject).to have_received(:print_instructions)
+        end
       end
 
       describe 'when option selected is 1' do
@@ -211,10 +220,6 @@ module DataSearch
 
       it 'invokes the welcome message method' do
         expect(subject).to have_received(:welcome_prompt)
-      end
-
-      it 'invokes the instructions method' do
-        expect(subject).to have_received(:print_instructions)
       end
 
       it 'loops main menu' do
