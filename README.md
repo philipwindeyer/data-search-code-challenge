@@ -70,6 +70,8 @@ Components of the app are all unit tested with RSpec test suites, located in `sp
 - `bundle exec yard doc` to generate documentation (.yardopts file has default args passed to yard)
 - `bundle exec yard server` to serve documentation (as a HTML web-app) locally
 
+When being served locally, view the app documentation at [localhost:8808](http://localhost:8808/)
+
 #### IRB (console)
 
 - `bin/console` to load up IRB with gem files present.

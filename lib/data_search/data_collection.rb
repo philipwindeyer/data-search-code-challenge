@@ -3,10 +3,9 @@
 require 'data_search/searchable'
 
 module DataSearch
-
   # A PORO to store data that makes up a "data collection"
-  #   Store the "name" of the collection, and the "data" itself
-  #   "data" is extended @see Hashie::Extensions::DeepLocate 
+  #   Stores the "name" of the collection, and the "data" itself (as an array of hashes)
+  #   It is extended by the @see Searchable module to provide search methods
   class DataCollection
     include Searchable
     attr_reader :name, :data

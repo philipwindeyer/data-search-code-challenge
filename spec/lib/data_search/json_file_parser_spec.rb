@@ -25,7 +25,7 @@ module DataSearch
         end
 
         describe 'when file path provided does not look like a string' do
-          it 'raises an ArgumentError' do
+          it 'raises an TypeError' do
             expect { described_class.read_data_from_file(DataSearch::JsonFileParser) }.to raise_error(TypeError)
           end
         end

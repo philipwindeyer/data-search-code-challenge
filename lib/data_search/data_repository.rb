@@ -5,7 +5,6 @@ require 'data_search/json_file_parser'
 require 'data_search/data_collection'
 
 module DataSearch
-
   # "Repository" that, via JSON files provided, builds @see DataCollection objects per file
   class DataRepository
     DEFAULTS = [
