@@ -1,0 +1,33 @@
+[
+  {
+    "name": "CRA",
+    "iconDescription": "Atom in a box",
+    "from": "Create React App",
+    "dimensions": { "x": 20, "y": 8 },
+    "idealSurface": "Back of laptop",
+    "meta": {
+      "from": {
+        "conference": "JSConf.Asia",
+        "location": "Singapore"
+      }
+    }
+  },
+  {
+    "name": "Octocat",
+    "iconDescription": "Shady lookin octocat with a hat on and a cigar",
+    "from": "Github",
+    "colors": ["grey"],
+    "dimensions": { "x": 20, "y": 8 },
+    "idealSurface": "Back of laptop",
+    "rogueProp": "random bit that is not a part of any other object"
+  },
+  {
+    "name": "Apple Logo",
+    "iconDescription": "Old school rainbow Apple logo",
+    "from": "Apple",
+    "colors": ["green", "yellow", "orange", "pink", "purple", "blue"],
+    "dimensions": { "x": 15, "y": 15 },
+    "idealSurface": "Side of tower",
+    "porousness": ""
+  }
+]
