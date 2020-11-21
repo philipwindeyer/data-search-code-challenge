@@ -29,6 +29,7 @@ module DataSearch
     end
 
     private
+
     def read_file(file_path)
       File.open(file_path).read
     end

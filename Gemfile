@@ -7,7 +7,7 @@ gem 'activesupport', '~> 6.0', '>= 6.0.3.4'
 gem 'hashie', '~> 4.1'
 gem 'tty-prompt', '~> 0.22.0'
 
-group :test do
+group :development do
   gem 'rake', '~> 12.0'
   gem 'rdoc', '~> 6.2', '>= 6.2.1'
   gem 'rubocop', '~> 1.3'
