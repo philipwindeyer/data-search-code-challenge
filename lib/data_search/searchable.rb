@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'hashie/extensions/deep_locate'
+
 module DataSearch
   module Searchable
     def search(field, term)
