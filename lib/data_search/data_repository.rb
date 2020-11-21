@@ -32,7 +32,8 @@ module DataSearch
         file_paths.map do |file_path|
           DataCollection.new(
             get_name(file_path),
-            get_data(file_path)
+            get_data(file_path),
+            get_aliases(file_path)
           )
         end
       end
@@ -47,6 +48,11 @@ module DataSearch
     def get_data(file_path)
       data = JsonFileParser.read_data_from_file(file_path)
       data.is_a?(Array) ? data : [data]
+    end
+
+    def get_aliases(file_path)
+      # TODO Support synonyms for related objects that refer to a collection with a different but related term
+      [File.basename(file_path, '.*').underscore.downcase.singularize]
     end
   end
 end

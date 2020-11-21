@@ -8,11 +8,12 @@ module DataSearch
   #   It is extended by the @see Searchable module to provide search methods
   class DataCollection
     include Searchable
-    attr_reader :name, :data
+    attr_reader :name, :data, :aliases
 
-    def initialize(name, data)
+    def initialize(name, data, aliases = [])
       @name = name
       @data = data
+      @aliases = aliases
     end
   end
 end

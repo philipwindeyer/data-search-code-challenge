@@ -71,6 +71,10 @@ module DataSearch
             it 'assigns parsed file contents to "data"' do
               expect(subject[0].data).to eq(test_json)
             end
+
+            it 'sets the aliases to an array with downcased singularized name' do
+              expect(subject[0].aliases).to eq(['message'])
+            end
           end
 
           describe 'when data in file is a single object' do
@@ -82,6 +86,10 @@ module DataSearch
 
             it 'wraps single object in array and assigns to data' do
               expect(subject[0].data).to eq([test_json])
+            end
+
+            it 'sets the aliases to an array with downcased singularized name' do
+              expect(subject[0].aliases).to eq(['message'])
             end
           end
         end
@@ -128,6 +136,10 @@ module DataSearch
           it 'assigns parsed file contents to "data"' do
             expect(subject[0].data).to eq(fav_shows)
           end
+
+          it 'sets the aliases to an array with downcased singularized name' do
+              expect(subject[0].aliases).to eq(['favourite_show'])
+            end
         end
 
         describe 'second object' do
@@ -138,6 +150,10 @@ module DataSearch
           it 'assigns parsed file contents to "data"' do
             expect(subject[1].data).to eq(system_settings)
           end
+
+          it 'sets the aliases to an array with downcased singularized name' do
+              expect(subject[1].aliases).to eq(['system_setting'])
+            end
         end
       end
     end
