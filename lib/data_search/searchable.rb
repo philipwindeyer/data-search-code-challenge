@@ -30,12 +30,17 @@ module DataSearch
 
     def matching_nested_value?(field, term, object)
       nested_field = field.split('.').last.to_sym
+      object.extend(Hashie::Extensions::DeepLocate) unless supports_dfs?(object)
 
       deeply_nested = object.deep_locate ->(key, value, _object) do
         key == nested_field && value.to_s.casecmp?(term)
       end
 
       deeply_nested.any?
+    end
+
+    def supports_dfs?(object)
+      object.respond_to?(:deep_locate)
     end
 
     def matches?(field, term, object)

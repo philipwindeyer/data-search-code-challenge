@@ -106,7 +106,7 @@ module DataSearch
             idealSurface: "Side of tower",
             porousness: ''
           }
-        ].map { |obj| obj.extend(Hashie::Extensions::DeepLocate) }
+        ]
       end
 
       subject { DataCollection.new('Stickers', stickers).search(field, term) }
@@ -134,6 +134,10 @@ module DataSearch
                 }
               ]
             )
+          end
+
+          it 'does not extend the objects with dfs support' do
+            subject.each { |result| expect(result).not_to respond_to(:deep_locate) }
           end
         end
 
@@ -260,6 +264,10 @@ module DataSearch
                 }
               ]
             )
+          end
+
+          it 'extends the objects found to support dfs' do
+            subject.each { |result| expect(result).to respond_to(:deep_locate) }
           end
         end
 
